@@ -1,0 +1,32 @@
+<project name="MKR" default="jar" basedir=".">
+
+
+    <property name="src.dir" value="src"/>
+    <property name="build.dir" value="build"/>
+    <property name="classes.dir" value="${build.dir}/classes"/>
+    <property name="jar.dir" value="${build.dir}/jar"/>
+    <property name="main-class" value="jar.mainClass"/>
+
+
+    <target name="compile">
+        <mkdir dir="${classes.dir}"/>
+        <javac srcdir="${src.dir}" destdir="${classes.dir}" includeantruntime="false"/>
+    </target>
+
+
+    <target name="jar" depends="compile">
+        <mkdir dir="${jar.dir}"/>
+        <jar destfile="${jar.dir}/myApp.jar" basedir="${classes.dir}">
+            <manifest>
+                <attribute name="Created-By" value="Tymur Varshavskiy"/>
+                <attribute name="MKR.Main-Class" value="${main-class}"/>
+            </manifest>
+        </jar>
+    </target>
+
+
+    <target name="clean">
+        <delete dir="${build.dir}"/>
+    </target>
+
+</project>
